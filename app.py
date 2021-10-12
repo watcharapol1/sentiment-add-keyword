@@ -61,7 +61,7 @@ def sentiment():
 def home():
     return 'Hello World'
 
-@app.route('/api/', methods=['GET'])
+@app.route('/api/sentiments', methods=['GET'])
 def get_api():
     return sentiment()
 
