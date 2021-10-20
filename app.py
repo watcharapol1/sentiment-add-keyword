@@ -2,7 +2,7 @@ from nltk import NaiveBayesClassifier as nbc
 from pythainlp.tokenize import word_tokenize
 import codecs
 from itertools import chain
-from flask import Flask,request
+from flask import Flask,request, jsonify
 import pandas as pd
 import json
 import numpy as np
@@ -52,9 +52,9 @@ def sentiment():
     my_array = np.array([test_sentence, sentiment])
     text.append(my_array)
     df = pd.DataFrame(text, columns = ['text','sentiment'])
-    result = df.to_json(orient="index")
+    result = df.to_json(orient="records")
     parsed = json.loads(result)
-    return parsed
+    return jsonify(parsed)
 #############################################################################################
 
 @app.route('/', methods=['GET'])
